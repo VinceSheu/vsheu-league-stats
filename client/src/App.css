@@ -31,3 +31,90 @@
     transform: rotate(360deg);
   }
 }
+
+.winStatus { grid-area: area1; }
+.duration { grid-area: area2; }
+.summoner-name { grid-area: area3; }
+.kill-death { grid-area: area4; }
+.cs { grid-area: area5 }
+.summonerSpells { grid-area: area6 }
+.items-header {
+  grid-area: area7;
+  padding: 2px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.items { grid-area: area8 }
+.level { grid-area: area9 }
+
+.match-container {
+  margin: 5px auto;
+  padding: 10px 0;
+  max-width: 600px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  
+  display: grid;
+  grid-template-areas:
+    'area1 area3 area3 area9'
+    'area2 area4 area5 area6'
+    'area7 area7 area7 area7'
+    'area8 area8 area8 area8';
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.item {
+  display: inline-block;
+  width: 32%;
+  padding: 3px;
+  font-size: 14px;
+}
+
+.spell {
+  display: inline-block;
+  width: 49%;
+  padding: 2px;
+  font-size: 14px;
+}
+
+
+
+.victory-container {
+  background-color: #a3cfec;
+}
+
+.defeat-container {
+  background-color: #e2b6b3;
+}
+
+.content-area {
+  padding: 40px 10px;
+}
+
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.victory-font {
+  font-size: 24px;
+  color: green;
+}
+
+.defeat-font {
+  font-size: 24px;
+  color: red;
+}
+
+
