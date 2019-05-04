@@ -22,6 +22,7 @@
     "create-react-app": "^3.0.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
-    "kayn": "^0.9.8"
+    "kayn": "^0.9.8",
+    "xregexp": "^4.2.4"
   }
 }

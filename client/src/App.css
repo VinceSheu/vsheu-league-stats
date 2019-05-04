@@ -78,8 +78,6 @@
   font-size: 14px;
 }
 
-
-
 .victory-container {
   background-color: #a3cfec;
 }
@@ -117,4 +115,11 @@
   color: red;
 }
 
+.error {
+  padding: 20px 0;
+  color: red;
+}
 
+.input-field {
+  min-width: 150px;
+}
