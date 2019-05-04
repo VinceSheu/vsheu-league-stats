@@ -4,14 +4,14 @@ import XRegExp from 'xregexp';
 
 class App extends Component {
   // Initialize state
-  state = { value: '', matchHistory: [], loading: false, error: null }
+  state = { value: '', matchHistory: [], loading: false, error: null, searchedSummoner: '' }
 
   componentDidMount() {
     
   }
 
   getMatchHistory = () => {
-    this.setState({ matchHistory: [], loading: true, error: null });
+    this.setState({ matchHistory: [], loading: true, error: null, searchedSummoner: this.state.value });
     fetch(`/api/matchHistory?username=${this.state.value}`)
       .then(res => {
           if (res.ok) {
@@ -54,7 +54,7 @@ class App extends Component {
         <div className="kill-death">{ `KDA: ${match.kills}/${match.deaths}/${match.assists}` }</div>
         <div className="cs">{ `CS: ${match.creepScore} (${match.creepPerMin})` }</div>
         <div className="summonerSpells">{ `${match.summonerSpells[0]} & ${match.summonerSpells[1]}` }</div>
-        <div className="items-header">Items</div>
+        <div className="items-header"><b>Items</b></div>
         <div className="items">{ match.boughtItems.map( 
             item => <div key={`${match.gameId} ${item}`} className="item">{item}</div>
           )}
@@ -64,7 +64,7 @@ class App extends Component {
   }
 
   render() {
-    const { value, matchHistory, loading, error } = this.state;
+    const { value, matchHistory, loading, error, searchedSummoner } = this.state;
 
     return (
       <div className="App">
@@ -81,7 +81,7 @@ class App extends Component {
         { loading && <div className="loader"></div> }
         { !loading && matchHistory && matchHistory.length > 0 && (
           <div>
-            <h3>These are <b>{value}</b>'s last 10 matches:</h3>
+            <h3>These are <b>{ searchedSummoner }</b>'s last 10 matches:</h3>
             {this.renderMatchHistory()}
           </div>
         ) }
