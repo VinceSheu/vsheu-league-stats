@@ -78,15 +78,10 @@ app.get('/api/matchHistory', async (req, res) => {
     ));
 
     const newRes = {
-      matches,
-      matchDetails,
-      items,
       results
     }
 
     res.json(newRes);
-
-    console.log('------');
   }
   catch(err) {
     switch (err.statusCode) {
