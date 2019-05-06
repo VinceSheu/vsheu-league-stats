@@ -66,11 +66,15 @@ app.get('/api/matchHistory', async (req, res) => {
     const { matches } = await kayn.Matchlist.by
           .accountID(accountId);
     const gameIds = matches.slice(0, 10).map(({ gameId }) => gameId);
+
     const matchDetails = await Promise.all(gameIds.map(kayn.Match.get));
 
-    const championIdMap = await kayn.DDragon.Champion.listDataByIdWithParentAsId();
-    const { data: items }  =  await kayn.DDragon.Item.list();
-    const { data: summonerSpells } = await kayn.DDragon.SummonerSpell.list();
+    const [ championIdMap, { data: items }, { data: summonerSpells } ] = await Promise.all([
+      kayn.DDragon.Champion.listDataByIdWithParentAsId(),
+      kayn.DDragon.Item.list(),
+      kayn.DDragon.SummonerSpell.list()
+    ])
+    
     //const perks  = await kayn.DDragon.RunesReforged.list(); bugged?
 
     const results = await Promise.all(matchDetails.map(
